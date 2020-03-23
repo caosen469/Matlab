@@ -40,3 +40,20 @@ For the example table, the code should be: "ismissing(data)"
 
 We can delete rows in a table if we the index of those table, in this tutorial, we got the logical column vector from the combination of "any" and "ismissing", then we can do this:
     table(logicalV,:) = [], then all the rows incldue missing values are deleted.
+
+# *Categories and Set Options*
+
+# *Find and Merge Categories*
+create a categorical array: x = categorical({'medium','lagre', 'small', 'medium', 'red'})
+
+Find the categories in the x array using "categories function"
+    c = categories(x)
+
+setdiff function: setdiff(a, b), returns a variable d contains values in a but not present in b
+We can use the function to remove items from category:
+    for instance, we dont want to have red: sz = setdiff(c, 'red')
+
+Merge different categories in one categorical array, the following command merge the categories q1, q2, q3 by q: a = mergecats(a, {'q1', 'q2', 'q3'}, 'q')
+
+in our example:
+    x = mergecats(x, {'small', 'medium', 'large'}, 'size'), then the category size has three values for small, medium, large repectively
