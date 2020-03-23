@@ -1,6 +1,6 @@
 **This note is for the course "Matlab for data visulization and processing"**
 
-*Working with missing data*
+# *Working with missing data*
 
 NaN: Not an Number
 
@@ -23,3 +23,20 @@ if we want calculate the avaergae of Windspeed, the code should be:
 
 if we want to calculate the mean value of a vector which incldue 'NaN', we could use the following code:
     avgP = mean(table.Pressure, 'omitnan')
+
+
+# *Deleting missing data*
+Some functions allow the style of "omitnan", some not. For functions which are not allowed to use omit style, we can delete the NaN observations.
+    *Note*: missing values are NaN, missing datatime is NaT, missing categorical data are undefined.
+
+    *Note*: using "ismissing" function on a table to identify the location of any missing values.
+
+For the example table, the code should be: "ismissing(data)"
+
+    *Note*: Using "any" function to determine which rows has any true value. e.g. trueRows = any(grid, 2)
+    The 2 means search any true value in second demensions, which is row. (The first dimension is column)
+
+    *Combine "ismissing" and "any", we could get a column vector whose each element represeant a row, if the value is 1, means there is missing value in that row, vise versa.*
+
+We can delete rows in a table if we the index of those table, in this tutorial, we got the logical column vector from the combination of "any" and "ismissing", then we can do this:
+    table(logicalV,:) = [], then all the rows incldue missing values are deleted.
